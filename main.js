@@ -78,6 +78,8 @@ var letterCount = function(string){
 		var charArray = element.split('').sort();
 		var counter = [];
 		var previousLetter = " ";
+
+		// console.log(charArray);
 		
 		for ( var i = 0; i < charArray.length; i++ ) {
         	
@@ -97,5 +99,28 @@ var letterCount = function(string){
 };
 
 console.log(letterCount('Today is the greatest day ever!'));
-// >>>>>>> End #3 <<<<<<<<
+// >>>>>>>> End #3 <<<<<<<<
 
+// >>>>>>>> #3 Alternate <<<<<<<<
+var countMatchingLetters = function(string){
+
+	var stringAsArray = string.split(' ');
+	console.log(stringAsArray);
+
+	var letterCount = stringAsArray.map(function(letter){
+
+		var characterArray = letter.split('');
+		console.log(characterArray);
+
+		return characterArray.reduce(function(prev, next, index){
+			prev[next] = ++prev[next] || 1;
+			return prev;
+		},[]);
+//	This  ^^ start value can be set as either an array (which gives an array of arrays the letter as key and the count as the property) or as
+//	an object (which returns an array of objects)	
+
+	}); console.log(letterCount);
+};
+
+console.log(countMatchingLetters('Today is the greatest day ever!'));
+// >>>>>>>> End #3 Alternate <<<<<<<<
