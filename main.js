@@ -67,3 +67,35 @@ var swapCase2a = function(string) {
 console.log(swapCase('Hello World!'));
 console.log(swapCase2a("Let's Try This One!"));
 // >>>>>>>> End #2 <<<<<<<<
+
+// >>>>>>>> Problem #3 <<<<<<<<
+var letterCount = function(string){
+
+	var stringArray = string.split(' ');
+
+	var count = stringArray.map(function(element){
+
+		var charArray = element.split('').sort();
+		var counter = [];
+		var previousLetter = " ";
+		
+		for ( var i = 0; i < charArray.length; i++ ) {
+        	
+        	if ( charArray[i] === previousLetter ) {
+            	counter.push(1);
+        	} 
+
+        	previousLetter = charArray[i];
+    	}
+
+    	return counter.length
+	});
+
+	var indexOfMax = count.indexOf(Math.max.apply(null, count));
+
+	return 'The word with the most repeating letters is "' + stringArray[indexOfMax] + '"';
+};
+
+console.log(letterCount('Today is the greatest day ever!'));
+// >>>>>>> End #3 <<<<<<<<
+
