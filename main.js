@@ -72,10 +72,10 @@ console.log(swapCase2a("Let's Try This One!"));
 var letterCount = function(string){
 
 	var stringArray = string.split(' ');
-
+	// console.log(stringArray);
 	var count = stringArray.map(function(element){
 
-		var charArray = element.split('').sort();
+		var charArray = element.toLowerCase().split('').sort();
 		var counter = [];
 		var previousLetter = " ";
 
@@ -90,9 +90,11 @@ var letterCount = function(string){
         	previousLetter = charArray[i];
     	}
 
+    	// console.log(counter);
     	return counter.length
 	});
 
+	// console.log(count);
 	var indexOfMax = count.indexOf(Math.max.apply(null, count));
 
 	return 'The word with the most repeating letters is "' + stringArray[indexOfMax] + '"';
@@ -105,22 +107,35 @@ console.log(letterCount('Today is the greatest day ever!'));
 var countMatchingLetters = function(string){
 
 	var stringAsArray = string.split(' ');
-	console.log(stringAsArray);
+	// console.log(stringAsArray);
 
 	var letterCount = stringAsArray.map(function(letter){
 
 		var characterArray = letter.split('');
-		console.log(characterArray);
+		// console.log(characterArray);
 
-		return characterArray.reduce(function(prev, next, index){
+		return characterArray.reduce(function(prev, next){
 			prev[next] = ++prev[next] || 1;
 			return prev;
+
 		},[]);
 //	This  ^^ start value can be set as either an array (which gives an array of arrays the letter as key and the count as the property) or as
-//	an object (which returns an array of objects)	
+//	an object (which returns an array of objects)
 
-	}); console.log(letterCount);
+	});
+
+	console.log(letterCount);
+
+	var makeIndex = letterCount.map(function(arrayElement){
+
+		return arrayElement.reduce(function(previousValue, currentValue, index){
+
+			return previousValue + currentValue;
+
+		}, 0); 
+
+	}); console.log(makeIndex);
 };
 
-console.log(countMatchingLetters('Today is the greatest day ever!'));
+console.log(countMatchingLetters('The great state of mississippi'));
 // >>>>>>>> End #3 Alternate <<<<<<<<
