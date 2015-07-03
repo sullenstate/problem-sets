@@ -105,9 +105,7 @@ console.log(letterCount('Today is the greatest day ever!'));
 
 // >>>>>>>> #3 Alternate <<<<<<<<
 var countMatchingLetters = function(string){
-
 	var stringAsArray = string.split(' ');
-	// console.log(stringAsArray);
 
 	var letterCount = stringAsArray.map(function(letter){
 
@@ -118,24 +116,32 @@ var countMatchingLetters = function(string){
 			prev[next] = ++prev[next] || 1;
 			return prev;
 
-		},[]);
+		},{});
 //	This  ^^ start value can be set as either an array (which gives an array of arrays the letter as key and the count as the property) or as
 //	an object (which returns an array of objects)
-
 	});
 
-	console.log(letterCount);
+	// console.log(letterCount);
+	var index = [];
 
-	var makeIndex = letterCount.map(function(arrayElement){
+	for (var i = 0; i < letterCount.length; i++) {
+		var word = letterCount[i];
+		var count = 0;
 
-		return arrayElement.reduce(function(previousValue, currentValue, index){
+		for (x in word) {
+			if (word[x] > 1) {
+				count += word[x];
+			}
+		};
+			index.push(count);
+			// console.log(index);
+	};
+	
+	var indexOfMax = index.indexOf(Math.max.apply(null, index));
 
-			return previousValue + currentValue;
+	return index[indexOfMax] === 0 ? -1 : 'The word with the most repeating letters is "' + stringAsArray[indexOfMax] + '"';
 
-		}, 0); 
-
-	}); console.log(makeIndex);
 };
 
-console.log(countMatchingLetters('The great state of mississippi'));
+console.log(countMatchingLetters('The greatest state of mississippi'));
 // >>>>>>>> End #3 Alternate <<<<<<<<
