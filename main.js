@@ -145,3 +145,61 @@ var countMatchingLetters = function(string){
 
 console.log(countMatchingLetters('The greatest state of mississippi'));
 // >>>>>>>> End #3 Alternate <<<<<<<<
+
+// >>>>>>>> Problem Set 3 #1 <<<<<<<<
+var palindrome = function(string){
+	console.log(string.toLowerCase().replace(/\W/g, ''));
+	console.log(string.toLowerCase().replace(/\W/g, '').split('').reverse().join(''));
+	return string.toLowerCase().replace(/\W/g, '') === string.toLowerCase().replace(/\W/g, '').split('').reverse().join('') ? true : false;
+};
+
+console.log(palindrome('Now, sir, a war is never even – sir, a war is won!'));
+// >>>>>>>> End #1
+
+// >>>>>>>> Problem Set 3 #2 <<<<<<<<
+var dashInsert = function(num){
+	var array = [];
+
+	for (var i = 0, numArray = num.toString().split(''); i < numArray.length; i++) {
+		array.push(numArray[i]);
+
+		if (numArray[i] % 2 !== 0 && numArray[ i + 1 ] % 2 !== 0 && i + 1 < numArray.length) {
+			array.push('-');
+		}
+	};
+
+	return array.join('');
+};
+
+console.log(dashInsert(3309876531));
+// >>>>>>>> End #2
+
+// >>>>>>>> Problem Set 3 #3 <<<<<<<<
+var caesarCipher = function(string, shiftNum){
+	var shifted = [];
+
+	for (var i = 0; i < string.length; i++) {
+	
+		if ((string.charCodeAt(i) >= 65 && string.charCodeAt(i) <= 90 - shiftNum) || 
+			(string.charCodeAt(i) >= 97 && string.charCodeAt(i) <= 122 - shiftNum)) {
+			
+			shifted.push(string.charCodeAt(i) + shiftNum);
+		}
+		else if (string.charCodeAt(i) > 122 - shiftNum && string.charCodeAt(i) <= 122) {
+			var resetCode = string.charCodeAt(i) - 123;
+			shifted.push(97 + shiftNum + resetCode);
+
+		}
+		else if (string.charCodeAt(i) > 90 - shiftNum && string.charCodeAt(i) <= 90) {
+			var resetCode = string.charCodeAt(i) - 91;
+			shifted.push(65 + shiftNum + resetCode);
+		}
+		else {
+			shifted.push(string.charCodeAt(i));
+		}
+	}
+	return String.fromCharCode.apply(null, shifted);
+};
+
+console.log(caesarCipher('Caesar Cipher!', 5));
+// >>>>>>>> End #3
