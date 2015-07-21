@@ -154,7 +154,7 @@ var palindrome = function(string){
 };
 
 console.log(palindrome('Now, sir, a war is never even – sir, a war is won!'));
-// >>>>>>>> End #1
+// >>>>>>>> End #1 <<<<<<<<
 
 // >>>>>>>> Problem Set 3 #2 <<<<<<<<
 var dashInsert = function(num){
@@ -172,7 +172,7 @@ var dashInsert = function(num){
 };
 
 console.log(dashInsert(3309876531));
-// >>>>>>>> End #2
+// >>>>>>>> End #2 <<<<<<<<
 
 // >>>>>>>> Problem Set 3 #3 <<<<<<<<
 var caesarCipher = function(string, shiftNum){
@@ -202,4 +202,86 @@ var caesarCipher = function(string, shiftNum){
 };
 
 console.log(caesarCipher('Caesar Cipher!', 5));
-// >>>>>>>> End #3
+// >>>>>>>> End #3 <<<<<<<<
+
+// >>>>>>>> Problem Set 4 #1 <<<<<<<<
+var addNumbers = function(string){
+	var arr = string.split('').filter(function(char){
+		return char !== ' ';
+	});
+	var numSum = 0;
+	var numArr = [];
+	var total = 0;
+
+	for (var i = 0; i < arr.length; i++) {
+		if (!isNaN(Number(arr[i]))) {
+			numSum += Number(arr[i]);
+			for (var j = i+1; j < arr.length + 1; j++) {
+				if (!isNaN(Number(arr[j]))) {
+					numSum += arr[j];
+				}
+				else {
+					i += j;
+					numArr.push(numSum);
+					numSum = 0;
+				}
+			};
+		}
+	};
+	for (var i = 0; i < numArr.length; i++) {
+		if (Number.isInteger(numArr[i])) {
+			total += numArr[i];
+		}
+		else {
+			total += Number(numArr[i]);
+		}
+	};
+	return total;
+};
+//Solution doesn't work if there is a space in the string...
+console.log(addNumbers('888Hello 3world2'));
+// >>>>>>>> End #1 <<<<<<<<
+
+// >>>>>>>> Problem Set 4 #2 <<<<<<<<
+var longestWord = function(string){
+	var arr = string.split(' ');
+	var lengthArray = [];
+
+	for (var i = 0; i < arr.length; i++) {
+		lengthArray.push(arr[i].length);
+	};
+
+	var indexOfMax = Math.max.apply(null, lengthArray);
+
+	return arr[indexOfMax];
+};
+
+console.log(longestWord('Its the end of the world as we know it'));
+// >>>>>>>> End #2 <<<<<<<<
+
+// >>>>>>>> Problem Set 4 #3 <<<<<<<<
+var averageStringNumbers = function(string){
+	var arr = string.split('').filter(function(char){
+		return char !== ' '
+	});
+	var letterArr = [];
+	var total = 0;
+
+	for (var i = 0; i < arr.length; i++) {
+		var charVal = arr[i].charCodeAt(0);
+		
+		if (charVal > 64 && charVal < 91 || charVal > 96 && charVal < 123) {
+			letterArr.push(arr[i]);
+		}
+		else {
+			if (!isNaN(+arr[i])) {
+				total += +arr[i];
+			};
+		}
+	};
+
+	return Math.round( total / letterArr.length );
+};
+
+console.log(averageStringNumbers('Hello6 9World 2, Nic8e D7ay!'));
+// >>>>>>>> End #3 <<<<<<<<
